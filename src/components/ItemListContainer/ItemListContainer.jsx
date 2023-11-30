@@ -1,8 +1,8 @@
 
 //Props: son argumentos que se pasan al componente desde su componente padre
-const ItemListContainer = ({greeting}) => {
+const ItemListContainer = ({greeting, propiedadPrueba}) => {
   return (
-    <div>{greeting}</div>
+    <div>{greeting} {propiedadPrueba}</div>
   )
 }
 
