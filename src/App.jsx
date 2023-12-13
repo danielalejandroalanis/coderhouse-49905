@@ -1,27 +1,23 @@
-import { useEffect, useState } from "react";
 import ItemListContainer from "./components/ItemListContainer";
 import NavBar from "./components/NavBar/NavBar";
 import "bootstrap/dist/css/bootstrap.min.css";
-
-import { getProducts } from "./services";
+import { useGetProducts } from "./hooks/useProducts";
+import UserData from "./components/UserData";
 
 const App = () => {
-  const [productsData, setProductsData] = useState([]);
   
-  useEffect(() => {
-    getProducts()
-      .then((response) => {
-        setProductsData(response.data.products)
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+  const { productsData } = useGetProducts(15);
 
   return (
     <div style={{ width: "100vw", height: "100vh" }}>
       <NavBar />
-      <ItemListContainer productsData={productsData} />
+      {/* <ItemListContainer productsData={productsData} /> */}
+      <UserData firstName="Benja" lastName="Garcia" age={20} birthdate="28/10/2003" myObject={
+        {
+          product: "Nuevo producto",
+          quantity: "10"
+        }
+      } />
     </div>
   );
 };
