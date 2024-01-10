@@ -10,6 +10,7 @@ import { useGetCategories } from "../../hooks/useProducts";
 
 const NavBar = () => {
   const { categories } = useGetCategories();
+  
 
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
