@@ -10,7 +10,6 @@ import { useGetCategories } from "../../hooks/useProducts";
 
 const NavBar = () => {
   const { categories } = useGetCategories();
-  
 
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
@@ -32,6 +31,8 @@ const NavBar = () => {
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
+
+        <Link to="/create-product">Crear producto nuevo</Link>
 
         <CartWidget />
       </Container>

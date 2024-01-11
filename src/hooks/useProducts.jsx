@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import {
-  getCategories,
   getProductsByCategory,
 } from "../services";
 
@@ -46,17 +45,19 @@ export const useGetProductById = (collectionName = "products", id) => {
   return { productData };
 };
 
-export const useGetCategories = () => {
+export const useGetCategories = (collectionName = 'categories') => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    getCategories()
-      .then((response) => {
-        setCategories(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    const db = getFirestore();
+    const productsCollection = collection(db, collectionName);
+
+    getDocs(productsCollection).then((snapshot) => {
+      const categories = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
+      setCategories(
+        categories[0].categories
+      );
+    });
   }, []);
 
   return { categories };
