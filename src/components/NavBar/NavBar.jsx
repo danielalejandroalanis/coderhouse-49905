@@ -32,7 +32,7 @@ const NavBar = () => {
           </Nav>
         </Navbar.Collapse>
 
-        <Link to="/create-product">Crear producto nuevo</Link>
+        {/* <Link to="/create-product">Crear producto nuevo</Link> */}
 
         <CartWidget />
       </Container>

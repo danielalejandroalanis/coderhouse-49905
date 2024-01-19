@@ -16,23 +16,18 @@ const ItemCount = ({ productId }) => {
   };
 
   const handleAddProductToCart = () => {
-    const newProduct = {
-      id: productId,
-      quantity: countItem,
-    };
-    if (count.length === 0) {
-      setCount([newProduct]);
+    const productExists = count.find((item) => item.id === productId);
+
+    if (productExists) {
+      setCount(
+        count.map((item) =>
+          item.id === productId
+            ? { ...item, quantity: item.quantity + countItem }
+            : item
+        )
+      );
     } else {
-      count.map((item) => {
-        if (item.id === productId) {
-          return {
-            ...item,
-            quantity: item.quantity + countItem,
-          };
-        } else {
-          setCount([...count, newProduct]);
-        }
-      });
+      setCount([...count, { id: productId, quantity: countItem }]);
     }
 
     setCountItem(1);
